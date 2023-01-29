@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dlwltn.cmm.mvc.repository.UserRepository">
+    
+    <select id="getUserList" parameterType="com.dlwltn.cmm.mvc.domain.CmmUser" resultType="com.dlwltn.cmm.mvc.domain.CmmUser">
+        SELECT A.USER_ID                                            /*    사용자 정보 테이블,    사용자 아이디    */
+             , A.NAME                                               /*    사용자 정보 테이블,    사용자 이름    */
+             , A.PWD                                                /*    사용자 정보 테이블,    비밀번호    */
+             , A.EMAIL                                              /*    사용자 정보 테이블,    이메일    */
+             , A.USE_AT                                             /*    사용자 정보 테이블,    사용 여부    */
+             , A.REGIST_DT                                          /*    사용자 정보 테이블,    등록 일시    */
+             , A.REGIST_USER                                        /*    사용자 정보 테이블,    등록 유저    */
+             , A.UPDT_DT                                            /*    사용자 정보 테이블,    수정 일시    */
+             , A.UPDT_USER                                          /*    사용자 정보 테이블,    수정 유저    */
+        FROM TC_USER_INFO A
+       ORDER BY REGIST_DT DESC
+    </select>
+    
+    <select id="getUser" parameterType="com.dlwltn.cmm.mvc.domain.CmmUser" resultType="com.dlwltn.cmm.mvc.domain.CmmUser">
+        SELECT A.USER_ID                                            /*    사용자 정보 테이블,    사용자 아이디    */
+             , A.NAME                                               /*    사용자 정보 테이블,    사용자 이름    */
+             , A.PWD                                                /*    사용자 정보 테이블,    비밀번호    */
+             , A.EMAIL                                              /*    사용자 정보 테이블,    이메일    */
+             , A.USE_AT                                             /*    사용자 정보 테이블,    사용 여부    */
+             , A.REGIST_DT                                          /*    사용자 정보 테이블,    등록 일시    */
+             , A.REGIST_USER                                        /*    사용자 정보 테이블,    등록 유저    */
+             , A.UPDT_DT                                            /*    사용자 정보 테이블,    수정 일시    */
+             , A.UPDT_USER                                          /*    사용자 정보 테이블,    수정 유저    */
+        FROM TC_USER_INFO A
+       WHERE A.USER_ID = #{userId}
+       ORDER BY REGIST_DT DESC
+    </select>
+    
+    <insert id="saveUser" parameterType="com.dlwltn.cmm.mvc.domain.CmmUser">
+        INSERT INTO TC_USER_INFO
+             (
+               USER_ID                                            /*    사용자 정보 테이블,    사용자 아이디    */
+             , NAME                                               /*    사용자 정보 테이블,    사용자 이름    */
+             , PWD                                                /*    사용자 정보 테이블,    비밀번호    */
+             , EMAIL                                              /*    사용자 정보 테이블,    이메일    */
+             , USE_AT                                             /*    사용자 정보 테이블,    사용 여부    */
+             , REGIST_DT                                          /*    사용자 정보 테이블,    등록 일시    */
+             , REGIST_USER                                        /*    사용자 정보 테이블,    등록 유저    */
+             , UPDT_DT                                            /*    사용자 정보 테이블,    수정 일시    */
+             , UPDT_USER                                          /*    사용자 정보 테이블,    수정 유저    */
+             )
+             VALUES
+             (
+               #{userId}                                           /*    사용자 정보 테이블,    사용자 아이디    */
+             , #{name}                                             /*    사용자 정보 테이블,    사용자 이름    */
+             , #{pwd}                                              /*    사용자 정보 테이블,    비밀번호    */
+             , #{email}                                            /*    사용자 정보 테이블,    이메일    */
+             , 'Y'                                                 /*    사용자 정보 테이블,    사용 여부    */
+             , NOW()                                               /*    사용자 정보 테이블,    등록 일시    */
+             , #{loginUser}                                        /*    사용자 정보 테이블,    등록 유저    */
+             , NOW()                                               /*    사용자 정보 테이블,    수정 일시    */
+             , #{loginUser}                                        /*    사용자 정보 테이블,    수정 유저    */
+             )
+    </insert>
+    
+    <update id="updtUser" parameterType="com.dlwltn.cmm.mvc.domain.CmmUser">
+        UPDATE TC_USER_INFO
+           SET USER_ID                                                  =#{userId}                                           /*    사용자 정보 테이블,    사용자 아이디    */
+             , NAME                                                     =#{name}                                             /*    사용자 정보 테이블,    사용자 이름    */
+             , PWD                                                      =#{pwd}                                              /*    사용자 정보 테이블,    비밀번호    */
+             , EMAIL                                                    =#{email}                                            /*    사용자 정보 테이블,    이메일    */
+             , UPDT_DT                                                  =NOW()                                               /*    사용자 정보 테이블,    수정 일시    */
+             , UPDT_USER                                                =#{loginUser}                                        /*    사용자 정보 테이블,    수정 유저    */
+         WHERE USER_ID = #{userId}
+    </update>
+    
+    <delete id="deleteUser" parameterType="com.dlwltn.cmm.mvc.domain.CmmUser">
+        DELETE FROM TC_USER_INFO
+         WHERE USER_ID = #{userId}
+    </delete>
+</mapper>
