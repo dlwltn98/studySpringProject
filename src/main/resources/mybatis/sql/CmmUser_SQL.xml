@@ -53,20 +53,19 @@
              , #{email}                                            /*    사용자 정보 테이블,    이메일    */
              , 'Y'                                                 /*    사용자 정보 테이블,    사용 여부    */
              , NOW()                                               /*    사용자 정보 테이블,    등록 일시    */
-             , #{loginUser}                                        /*    사용자 정보 테이블,    등록 유저    */
+             , 'test'                                        /*    사용자 정보 테이블,    등록 유저    */
              , NOW()                                               /*    사용자 정보 테이블,    수정 일시    */
-             , #{loginUser}                                        /*    사용자 정보 테이블,    수정 유저    */
+             , 'test'                                        /*    사용자 정보 테이블,    수정 유저    */
              )
     </insert>
     
     <update id="updtUser" parameterType="com.dlwltn.cmm.mvc.domain.CmmUser">
         UPDATE TC_USER_INFO
-           SET USER_ID                                                  =#{userId}                                           /*    사용자 정보 테이블,    사용자 아이디    */
-             , NAME                                                     =#{name}                                             /*    사용자 정보 테이블,    사용자 이름    */
+           SET NAME                                                     =#{name}                                             /*    사용자 정보 테이블,    사용자 이름    */
              , PWD                                                      =#{pwd}                                              /*    사용자 정보 테이블,    비밀번호    */
              , EMAIL                                                    =#{email}                                            /*    사용자 정보 테이블,    이메일    */
              , UPDT_DT                                                  =NOW()                                               /*    사용자 정보 테이블,    수정 일시    */
-             , UPDT_USER                                                =#{loginUser}                                        /*    사용자 정보 테이블,    수정 유저    */
+             , UPDT_USER                                                ='test'                                     /*    사용자 정보 테이블,    수정 유저    */
          WHERE USER_ID = #{userId}
     </update>
     

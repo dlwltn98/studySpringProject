@@ -8,6 +8,7 @@ public class CmmUser {
     private String userId;             /*    사용자 정보 테이블,    사용자 아이디    */
     private String name;               /*    사용자 정보 테이블,    사용자 이름    */
     private String pwd;                /*    사용자 정보 테이블,    비밀번호    */
+    private String chkPwd;
     private String email;              /*    사용자 정보 테이블,    이메일    */
     private String useAt;              /*    사용자 정보 테이블,    사용 여부    */
     private String registDt;           /*    사용자 정보 테이블,    등록 일시    */
