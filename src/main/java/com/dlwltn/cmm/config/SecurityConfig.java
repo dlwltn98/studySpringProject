@@ -29,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        //http.csrf().disable();
         // and().formLogin().loginPage("/user/login").defaultSuccessUrl("/") : 스프링 시큐리티의 로그인 설정을 담당하는 부분
         http.authorizeHttpRequests().requestMatchers(
                 new AntPathRequestMatcher("/**")).permitAll()
@@ -47,6 +47,11 @@ public class SecurityConfig {
                 .usernameParameter("userId")
                 .passwordParameter("pwd")
                 .defaultSuccessUrl("/")
+            .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
             ;
 
         return http.build();

@@ -34,10 +34,8 @@ public class UserController {
     private UserService userService;
     
     @GetMapping("/login")
-    public ModelAndView login() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/login");
-        return modelAndView;
+    public String login() {
+        return "user/login";
     }
     
     @GetMapping("/signup")
